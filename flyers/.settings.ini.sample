@@ -1,4 +1,4 @@
-[flayers]
+[flyers]
 webhook = https://hooks.slack.com/services/Txxxxxxxx/yyyyyyyyyyy/zzzzzzzzzzzzzzzzzzzzzzzz
 token = xoxb-11111111111-2222222222222-aaaaaaaaaaaaaaaaaaaaaaaa
 channel = Cxxxxxxxx
