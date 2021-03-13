@@ -7,6 +7,7 @@ from . import f
 from .yorkmart import yorkmart
 from .meatmeet import meatmeet
 from .gyoumusuper import gyoumusuper
+from .welcia import welcia
 
 def main ():
     dt_now = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
@@ -19,7 +20,7 @@ def main ():
     channel = config['flyers']['channel']
     channel_dev = config['flyers']['channel_dev']
     updated = False
-    stores = ['gyoumusuper']
+    stores = ['welcia']
 
     # get previous flyers info
     pf = f.prev_flyer ()
@@ -77,7 +78,12 @@ def main ():
                     text = '[debug] ' + store + ' has no changed.'
                     print (text)
 
-
+            elif store == "welcia": # ウエルシア
+                wl_flyers_page_list = welcia.get_flyer_page_list ()
+                print (wl_flyers_page_list)
+                for p in wl_flyers_page_list:
+                    welcia.get_flyers (p)
+                    exit ()
 
             else:
                 pass
