@@ -1,3 +1,4 @@
+*.log
 flyers/.settings.ini
 flyers/__pycache__
 flyers/yorkmart/__pycache__
