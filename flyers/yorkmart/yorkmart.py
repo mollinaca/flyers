@@ -6,7 +6,7 @@ def yorktest ():
     print ("yorkmart!")
     return 0
 
-def get_flayers () -> dict:
+def get_flyers () -> dict:
     """
     ヨークマートのチラシ情報
     """
