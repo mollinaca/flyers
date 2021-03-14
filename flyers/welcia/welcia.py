@@ -58,7 +58,7 @@ def get_flyers_pics (page_url:str) -> list:
     """
     # 各ページに画像が1枚なのか複数枚なのかを、ページ毎に確認する
     pics = []
-    driver = webdriver.PhantomJS(executable_path='/usr/local/bin/phantomjs')
+    driver = webdriver.PhantomJS(executable_path='/usr/local/bin/phantomjs', service_log_path=os.path.devnull)
     driver.get(page_url)
     body = driver.page_source
     html = BeautifulSoup (body, 'html.parser')
