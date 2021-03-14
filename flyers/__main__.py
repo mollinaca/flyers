@@ -1,8 +1,10 @@
 import sys, os
 import traceback
+import json
 import datetime
 import pathlib
 import configparser
+import git
 from . import f
 from .yorkmart import yorkmart
 from .meatmeet import meatmeet
@@ -39,6 +41,10 @@ def main ():
                         else:
                             message = 'チラシファイルのダウンロードに失敗しました。URL: ' + flyer_url
                             f.iw (webhook_dev, message)
+                    if store not in pf['stores']:
+                        pf['stores'].append(store)
+                    pf['detail'][store] = york_flyers
+
                 else:
                     text = '[debug] ' + store + ' has no changed.'
                     print (text)
@@ -55,6 +61,10 @@ def main ():
                         else:
                             message = 'チラシファイルのダウンロードに失敗しました。URL: ' + flyer_url
                             f.iw (webhook_dev, message)
+                    if store not in pf['stores']:
+                        pf['stores'].append(store)
+                    pf['detail'][store] = mm_flyers
+
                 else:
                     text = '[debug] ' + store + ' has no changed.'
                     print (text)
@@ -71,6 +81,10 @@ def main ():
                         else:
                             message = 'チラシファイルのダウンロードに失敗しました。URL: ' + flyer_url
                             f.iw (webhook_dev, message)
+                    if store not in pf['stores']:
+                        pf['stores'].append(store)
+                    pf['detail'][store] = gs_flyers
+
                 else:
                     text = '[debug] ' + store + ' has no changed.'
                     print (text)
@@ -84,6 +98,9 @@ def main ():
                         for pic in pics:
                             f.files_upload (token, channel_dev, pic, p)
                             os.remove (pic)
+                    if store not in pf['stores']:
+                        pf['stores'].append(store)
+                    pf['detail'][store] = wl_flyers_page_list
                 else:
                     text = '[debug] ' + store + ' has no changed.'
                     print (text)
@@ -91,11 +108,22 @@ def main ():
             else:
                 pass
 
-        if updated: # チラシに更新があった
-            pass
+        if updated:
+            # ファイルを更新
+            pf['updated_at'] = dt_now
+            SCRIPT_DIR = pathlib.Path(__file__).resolve().parent.parent
+            OUTPUT_DIR = pathlib.Path(str(SCRIPT_DIR) + '/docs/')
+            OUTPUT_FILE_NAME = 'latest.json'
+            OUTPUT_FILE = pathlib.Path(str(OUTPUT_DIR) + '/' + OUTPUT_FILE_NAME)
+            with open(OUTPUT_FILE, mode='w') as fl:
+                fl.write(json.dumps(pf, indent=4))
 
-
-
+            # git push
+            git_repo= git.Repo(SCRIPT_DIR)
+            git_repo.index.add(str(OUTPUT_FILE))
+            commit_message = '[auto] update ' + str(OUTPUT_FILE_NAME)
+            git_repo.index.commit(commit_message)
+            git_repo.remotes.origin.push('HEAD')
 
     except Exception as e:
         err_msg = '```' + '[Exception]\n' + str(e) + '\n' + '[StackTrace]' + '\n' + traceback.format_exc() + '```'
