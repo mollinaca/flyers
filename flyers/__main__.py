@@ -20,9 +20,7 @@ def main ():
     channel = config['flyers']['channel']
     channel_dev = config['flyers']['channel_dev']
     updated = False
-    stores = ['welcia']
-
-    # get previous flyers info
+    stores = ['yorkmart','meatmeet','gyoumusuper','welcia']
     pf = f.prev_flyer ()
 
     try:
@@ -63,7 +61,6 @@ def main ():
 
             elif store == "gyoumusuper": # 業務スーパー
                 gs_flyers = gyoumusuper.get_flyers()
-                print (gs_flyers)
                 if store not in pf['detail'] or not (set(mm_flyers['flyers']) == set(pf['detail'][store]['flyers'])):
                     updated = True
                     for flyer_url in gs_flyers['flyers']:
@@ -80,10 +77,16 @@ def main ():
 
             elif store == "welcia": # ウエルシア
                 wl_flyers_page_list = welcia.get_flyer_page_list ()
-                print (wl_flyers_page_list)
-                for p in wl_flyers_page_list:
-                    welcia.get_flyers (p)
-                    exit ()
+                if store not in pf['detail'] or not (set(wl_flyers_page_list) == set(pf['detail'][store]['flyers'])):
+                    updated = True
+                    for p in wl_flyers_page_list:
+                        pics = welcia.get_flyers_pics (p)
+                        for pic in pics:
+                            f.files_upload (token, channel_dev, pic, p)
+                            os.remove (pic)
+                else:
+                    text = '[debug] ' + store + ' has no changed.'
+                    print (text)
 
             else:
                 pass

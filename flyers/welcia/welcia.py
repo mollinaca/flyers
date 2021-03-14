@@ -1,8 +1,15 @@
+import sys,os
 import datetime, time
 import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from .. import f
+
+""" サンプルページ
+チラシ1枚ページ http://s-cmn.shufoo.net/chirashi/298280/37174623802166/?
+チラシ2枚ページ http://s-cmn.shufoo.net/chirashi/298280/97116123867838/?
+"""
+
 
 def get_flyer_page_list () -> list:
     """
@@ -44,28 +51,55 @@ def get_flyer_page_list () -> list:
 
     return flyer_page_list
 
-def get_flyers (page_url:str) -> dict:
+def get_flyers_pics (page_url:str) -> list:
+    """
+    ページURLから画像を取得してファイル名を返す
+    1つのURLから1枚取れるパターンと2枚取れるパターンがあるためリストで返す
+    """
     # 各ページに画像が1枚なのか複数枚なのかを、ページ毎に確認する
-    ua = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100'
-    headers = {'User-Agent': ua}
+    pics = []
     driver = webdriver.PhantomJS(executable_path='/usr/local/bin/phantomjs')
     driver.get(page_url)
     body = driver.page_source
-    #res = requests.get (page_url, headers=headers)
     html = BeautifulSoup (body, 'html.parser')
     n = int(html.find('div', {'class':'cv_pager_number'}).get_text().split('/')[1].strip())
-#    print (html)
-    print (n)
 
-    if n == 1:
-        p = page_url.split('/')[-2]
-        filename = 'welcia_' + p + '.jpg'
-        sliceimg_url_list = []
-        L = html.findAll(class_='cv_panel')[0].select('img')
-        for l in L:
-            sliceimg_url_list.append(l.get('src'))
+    p = page_url.split('/')[-2]
+    filename = 'welcia_' + p + '.jpg'
+    sliceimg_url_list = []
+    L = html.findAll(class_='cv_panel')[0].select('img')
+    for l in L:
+        sliceimg_url_list.append(l.get('src'))
+
+    images = []
+    for img_url in sliceimg_url_list:
+        title = img_url.split('/')[-1]
+        images.append(title)
+        f.dl (img_url)
+    images_left = []
+    images_right = []
+    for i,img in enumerate(images):
+        if i%2 == 0:
+            images_left.append(img)
+        else:
+            images_right.append(img)
+    f.concat_v (images_left).save('left.jpg')
+    f.concat_v (images_right).save('right.jpg')
+    f.concat_h (['left.jpg','right.jpg']).save(filename)
+    pics.append (filename)
+
+    for img in images:
+        os.remove(img)
+    os.remove('right.jpg')
+    os.remove('left.jpg')
+
+    if n == 2: # 裏表で２枚あるページ
+        # 2枚目のファイル名は 1枚目の image1 が image2 に変わっただけなのでそのままURLをいじって取得する
+        # この部分が変更されたら追従が必要
+        filename = 'welcia_' + p + '_2' + '.jpg'
         images = []
         for img_url in sliceimg_url_list:
+            img_url = img_url.replace('image1','image2')
             title = img_url.split('/')[-1]
             images.append(title)
             f.dl (img_url)
@@ -79,3 +113,11 @@ def get_flyers (page_url:str) -> dict:
         f.concat_v (images_left).save('left.jpg')
         f.concat_v (images_right).save('right.jpg')
         f.concat_h (['left.jpg','right.jpg']).save(filename)
+        pics.append (filename)
+
+        for img in images:
+            os.remove(img)
+        os.remove('right.jpg')
+        os.remove('left.jpg')
+
+    return pics
