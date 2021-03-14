@@ -4,7 +4,6 @@ import time
 import shutil
 import json
 import requests
-import git
 from selenium import webdriver
 from PIL import Image
 
@@ -84,8 +83,8 @@ def prev_flyer () -> dict:
     """
     get previous flyer info from my WebAPI
     """
-#   url = 'https://mollinaca.github.io/flyers/latest.json'
-    url = 'https://mollinaca.github.io/flyers/latest_test.json'
+    url = 'https://mollinaca.github.io/flyers/latest.json'
+#   url = 'https://mollinaca.github.io/flyers/latest_test.json'
     res = requests.get(url)
     if res.status_code == 200:
         body = res.text
