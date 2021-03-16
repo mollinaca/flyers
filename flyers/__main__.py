@@ -71,7 +71,7 @@ def main ():
 
             elif store == "gyoumusuper": # 業務スーパー
                 gs_flyers = gyoumusuper.get_flyers()
-                if store not in pf['detail'] or not (set(mm_flyers['flyers']) == set(pf['detail'][store]['flyers'])):
+                if store not in pf['detail'] or not (set(gs_flyers['flyers']) == set(pf['detail'][store]['flyers'])):
                     updated = True
                     for flyer_url in gs_flyers['flyers']:
                         filename = f.dl (flyer_url)
