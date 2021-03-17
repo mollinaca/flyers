@@ -12,6 +12,7 @@ from .gyoumusuper import gyoumusuper
 from .welcia import welcia
 
 def main ():
+    debug = True
     dt_now = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
     p = pathlib.Path(__file__).resolve().parent
     config = configparser.ConfigParser()
@@ -26,6 +27,11 @@ def main ():
     pf = f.prev_flyer ()
 
     try:
+        if debug:
+            text = '[debug] script start'
+            print (text)
+            f.iw (webhook_dev, text)
+
         for store in stores:
             if store == 'yorkmart': # ヨークマート
                 york_flyers = yorkmart.get_flyers ()
@@ -46,8 +52,10 @@ def main ():
                     pf['detail'][store] = york_flyers
 
                 else:
-                    text = '[debug] ' + store + ' has no changed.'
-                    print (text)
+                    if debug:
+                        text = '[debug] ' + store + ' has no changed.'
+                        print (text)
+                        f.iw (webhook_dev, text)
 
             elif store == 'meatmeet': # ミートミート
                 mm_flyers = meatmeet.get_flyers()
@@ -66,8 +74,11 @@ def main ():
                     pf['detail'][store] = mm_flyers
 
                 else:
-                    text = '[debug] ' + store + ' has no changed.'
-                    print (text)
+                    if debug:
+                        text = '[debug] ' + store + ' has no changed.'
+                        print (text)
+                        f.iw (webhook_dev, text)
+
 
             elif store == "gyoumusuper": # 業務スーパー
                 gs_flyers = gyoumusuper.get_flyers()
@@ -86,8 +97,10 @@ def main ():
                     pf['detail'][store] = gs_flyers
 
                 else:
-                    text = '[debug] ' + store + ' has no changed.'
-                    print (text)
+                    if debug:
+                        text = '[debug] ' + store + ' has no changed.'
+                        print (text)
+                        f.iw (webhook_dev, text)
 
             elif store == "welcia": # ウエルシア
                 wl_flyers_page_list = welcia.get_flyer_page_list ()
@@ -102,8 +115,10 @@ def main ():
                         pf['stores'].append(store)
                     pf['detail'][store] = wl_flyers_page_list
                 else:
-                    text = '[debug] ' + store + ' has no changed.'
-                    print (text)
+                    if debug:
+                        text = '[debug] ' + store + ' has no changed.'
+                        print (text)
+                        f.iw (webhook_dev, text)
 
             else:
                 pass
@@ -124,6 +139,11 @@ def main ():
             commit_message = '[auto] update ' + str(OUTPUT_FILE_NAME)
             git_repo.index.commit(commit_message)
             git_repo.remotes.origin.push('HEAD')
+
+        if debug:
+            text = '[debug] script finished'
+            print (text)
+            f.iw (webhook_dev, text)
 
     except Exception as e:
         err_msg = '```' + '[Exception]\n' + str(e) + '\n' + '[StackTrace]' + '\n' + traceback.format_exc() + '```'
