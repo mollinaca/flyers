@@ -15,8 +15,9 @@ def main ():
     debug = True
     dt_now = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
     p = pathlib.Path(__file__).resolve().parent
+    conf_file_path = str(p) + '/.settings.ini'
     config = configparser.ConfigParser()
-    config.read(str(p)+'/.settings.ini')
+    config.read(conf_file_path)
     token = config['flyers']['token']
     webhook = config['flyers']['webhook']
     webhook_dev = config['flyers']['webhook_dev']
