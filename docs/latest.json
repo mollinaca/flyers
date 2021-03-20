@@ -1,5 +1,5 @@
 {
-    "updated_at": "20210320_163258",
+    "updated_at": "20210320_163741",
     "stores": [
         "yorkmart",
         "meatmeet",
@@ -35,8 +35,10 @@
                 "http://s-cmn.shufoo.net/chirashi/298280/38388623857683/?"
             ]
         },
-        "supervalue": [
-            "https://www.supervalue.jp/leaflet/uploads/20210314102302LJYz/"
-        ]
+        "supervalue": {
+            "flyers": [
+                "https://www.supervalue.jp/leaflet/uploads/20210314102302LJYz/"
+            ]
+        }
     }
 }
