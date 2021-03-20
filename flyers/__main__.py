@@ -10,6 +10,7 @@ from .yorkmart import yorkmart
 from .meatmeet import meatmeet
 from .gyoumusuper import gyoumusuper
 from .welcia import welcia
+from .supervalue import supervalue
 
 def main ():
     debug = True
@@ -24,7 +25,7 @@ def main ():
     channel = config['flyers']['channel']
     channel_dev = config['flyers']['channel_dev']
     updated = False
-    stores = ['yorkmart','meatmeet','gyoumusuper','welcia']
+    stores = ['yorkmart', 'meatmeet', 'gyoumusuper', 'welcia', 'supervalue']
     pf = f.prev_flyer ()
 
     try:
@@ -37,8 +38,6 @@ def main ():
             if store == 'yorkmart': # ヨークマート
                 york_flyers = yorkmart.get_flyers ()
                 if store not in pf['detail'] or not (set(york_flyers['flyers']) == set(pf['detail'][store]['flyers'])):
-                    # pf に存在しないスーパー or pf にあるデータと一致しないURLを取得した → チラシに更新があった
-                    # 新しいチラシを取得してPOSTする
                     updated = True
                     for flyer_url in york_flyers['flyers']:
                         filename = f.dl (flyer_url)
@@ -121,6 +120,21 @@ def main ():
                         print (text)
                         f.iw (webhook_dev, text)
 
+            elif store == "supervalue": # スーパーバリュー
+                sv_flyers_page_list = supervalue.get_flyer_page_url ()
+                if store not in pf['detail'] or not (set(sv_flyers_page_list) == set(pf['detail'][store]['flyers'])):
+                    updated = True
+                    for flyer_url in sv_flyers_page_list:
+                            f.iw (webhook_dev, flyer_url)
+                    if store not in pf['stores']:
+                        pf['stores'].append(store)
+                    sv_flyers = {"flyers": sv_flyers_page_list}
+                    pf['detail'][store] = sv_flyers
+                else:
+                    if debug:
+                        text = '[debug] ' + store + ' has no changed.'
+                        print (text)
+                        f.iw (webhook_dev, text)
             else:
                 pass
 
@@ -140,6 +154,10 @@ def main ():
             commit_message = '[auto] update ' + str(OUTPUT_FILE_NAME)
             git_repo.index.commit(commit_message)
             git_repo.remotes.origin.push('HEAD')
+            if debug:
+                text = '[debug] git push'
+                print (text)
+                f.iw(webhook_dev, text)
 
         if debug:
             text = '[debug] script finished'
