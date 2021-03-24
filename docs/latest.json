@@ -1,5 +1,5 @@
 {
-    "updated_at": "20210322_100002",
+    "updated_at": "20210324_210603",
     "stores": [
         "yorkmart",
         "meatmeet",
@@ -9,10 +9,10 @@
     ],
     "detail": {
         "yorkmart": {
-            "updated_at": "20210320_100003",
+            "updated_at": "20210324_210604",
             "flyers": [
-                "https://www.york-inc.com/ul-files/0320_201_A-1-scaled.jpg",
-                "https://www.york-inc.com/ul-files/0320_201_B-1-scaled.jpg"
+                "https://www.york-inc.com/ul-files/0324_201_A-1-scaled.jpg",
+                "https://www.york-inc.com/ul-files/0324_201_B-1-scaled.jpg"
             ]
         },
         "meatmeet": {
@@ -28,16 +28,15 @@
                 "https://image.tokubai.co.jp/images/bargain_office_leaflets/o=true/3841799.jpg"
             ]
         },
-        "welcia": {
-            "updated_at": "20210316_214200",
-            "flyers": [
-                "http://s-cmn.shufoo.net/chirashi/298280/37174623802166/?",
-                "http://s-cmn.shufoo.net/chirashi/298280/38388623857683/?"
-            ]
-        },
+        "welcia": [
+            "http://s-cmn.shufoo.net/chirashi/298280/38433623955068/?",
+            "http://s-cmn.shufoo.net/chirashi/298280/38388623857683/?",
+            "http://s-cmn.shufoo.net/chirashi/298280/37174623802166/?",
+            "http://s-cmn.shufoo.net/chirashi/298280/57670623960013/?"
+        ],
         "supervalue": {
             "flyers": [
-                "https://www.supervalue.jp/leaflet/uploads/202103180927329y1b/"
+                "https://www.supervalue.jp/leaflet/uploads/20210321093133XOcb/"
             ]
         }
     }
