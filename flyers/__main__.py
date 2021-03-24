@@ -13,7 +13,7 @@ from .welcia import welcia
 from .supervalue import supervalue
 
 def main ():
-    debug = True
+    debug = False
     dt_now = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
     p = pathlib.Path(__file__).resolve().parent
     conf_file_path = str(p) + '/.settings.ini'
@@ -43,6 +43,7 @@ def main ():
                         filename = f.dl (flyer_url)
                         if not filename == 'Fail':
                             f.files_upload (token, channel_dev, filename, flyer_url)
+                            f.files_upload (token, channel, filename, flyer_url)
                             os.remove (filename)
                         else:
                             message = 'チラシファイルのダウンロードに失敗しました。URL: ' + flyer_url
@@ -65,6 +66,7 @@ def main ():
                         filename = f.dl (flyer_url)
                         if not filename == 'Fail':
                             f.files_upload (token, channel_dev, filename, flyer_url)
+                            f.files_upload (token, channel, filename, flyer_url)
                             os.remove (filename)
                         else:
                             message = 'チラシファイルのダウンロードに失敗しました。URL: ' + flyer_url
@@ -88,6 +90,7 @@ def main ():
                         filename = f.dl (flyer_url)
                         if not filename == 'Fail':
                             f.files_upload (token, channel_dev, filename, flyer_url)
+                            f.files_upload (token, channel, filename, flyer_url)
                             os.remove (filename)
                         else:
                             message = 'チラシファイルのダウンロードに失敗しました。URL: ' + flyer_url
@@ -110,6 +113,7 @@ def main ():
                         pics = welcia.get_flyers_pics (p)
                         for pic in pics:
                             f.files_upload (token, channel_dev, pic, p)
+                            f.files_upload (token, channel, pic, p)
                             os.remove (pic)
                     if store not in pf['stores']:
                         pf['stores'].append(store)
@@ -126,6 +130,7 @@ def main ():
                     updated = True
                     for flyer_url in sv_flyers_page_list:
                             f.iw (webhook_dev, flyer_url)
+                            f.iw (webhook, flyer_url)
                     if store not in pf['stores']:
                         pf['stores'].append(store)
                     sv_flyers = {"flyers": sv_flyers_page_list}
