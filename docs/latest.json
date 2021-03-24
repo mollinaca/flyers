@@ -1,42 +1,49 @@
 {
-    "updated_at": "20210324_210603",
+    "updated_at": "20210324_211606",
     "stores": [
         "yorkmart",
+        "meetmeat",
+        "supervalue",
         "meatmeet",
         "gyoumusuper",
-        "welcia",
-        "supervalue"
+        "welcia"
     ],
     "detail": {
         "yorkmart": {
-            "updated_at": "20210324_210604",
+            "updated_at": "20210324_211607",
             "flyers": [
-                "https://www.york-inc.com/ul-files/0324_201_A-1-scaled.jp",
-                "https://www.york-inc.com/ul-files/0324_201_B-1-scaled.jp"
+                "https://www.york-inc.com/ul-files/0324_201_A-1-scaled.jpg",
+                "https://www.york-inc.com/ul-files/0324_201_B-1-scaled.jpg"
             ]
         },
         "meatmeet": {
-            "updated_at": "20210320_100013",
+            "updated_at": "20210324_211631",
             "flyers": [
-                "https://image.tokubai.co.jp/images/bargain_office_leaflets/o=true/3912073.jp",
-                "https://image.tokubai.co.jp/images/bargain_office_leaflets/o=true/3912074.jp"
+                "https://image.tokubai.co.jp/images/bargain_office_leaflets/o=true/3912073.jpg",
+                "https://image.tokubai.co.jp/images/bargain_office_leaflets/o=true/3912074.jpg"
+            ]
+        },
+        "gyomusuper": {
+            "updated_at": "20210111_103516",
+            "flyers": [
+                "https://image.tokubai.co.jp/images/bargain_office_leaflets/o=true/3777659.jpg"
             ]
         },
         "gyoumusuper": {
-            "updated_at": "20210316_221855",
+            "updated_at": "20210324_211653",
             "flyers": [
-                "https://image.tokubai.co.jp/images/bargain_office_leaflets/o=true/3841799.jp"
+                "https://image.tokubai.co.jp/images/bargain_office_leaflets/o=true/3841799.jpg"
             ]
         },
         "welcia": [
-            "http://s-cmn.shufoo.net/chirashi/298280/3843362395506/?",
-            "http://s-cmn.shufoo.net/chirashi/298280/3838862385768/?",
-            "http://s-cmn.shufoo.net/chirashi/298280/3717462380216/?",
-            "http://s-cmn.shufoo.net/chirashi/298280/5767062396001/?"
+            "http://s-cmn.shufoo.net/chirashi/298280/38433623955068/?",
+            "http://s-cmn.shufoo.net/chirashi/298280/38388623857683/?",
+            "http://s-cmn.shufoo.net/chirashi/298280/37174623802166/?",
+            "http://s-cmn.shufoo.net/chirashi/298280/57670623960013/?"
         ],
         "supervalue": {
             "flyers": [
-                "https://www.supervalue.jp/leaflet/uploads/20210321093133XOc/"
+                "https://www.supervalue.jp/leaflet/uploads/20210321093133XOcb/"
             ]
         }
     }
