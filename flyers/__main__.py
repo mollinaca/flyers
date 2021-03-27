@@ -13,7 +13,7 @@ from .welcia import welcia
 from .supervalue import supervalue
 
 def main ():
-    debug = False
+    debug = True
     dt_now = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
     p = pathlib.Path(__file__).resolve().parent
     conf_file_path = str(p) + '/.settings.ini'
@@ -37,17 +37,23 @@ def main ():
         for store in stores:
             if store == 'yorkmart': # ヨークマート
                 york_flyers = yorkmart.get_flyers ()
-                if store not in pf['detail'] or not (set(york_flyers['flyers']) == set(pf['detail'][store]['flyers'])):
+                if store not in pf['stores'] or not (set(york_flyers['flyers']) == set(pf['detail'][store]['flyers'])):
                     updated = True
                     for flyer_url in york_flyers['flyers']:
-                        filename = f.dl (flyer_url)
-                        if not filename == 'Fail':
-                            f.files_upload (token, channel_dev, filename, flyer_url)
-                            f.files_upload (token, channel, filename, flyer_url)
-                            os.remove (filename)
+                        if not flyer_url in pf['detail'][store]['flyers']:
+                            filename = f.dl (flyer_url)
+                            if not filename == 'Fail':
+                                f.files_upload (token, channel, filename, flyer_url)
+                                if debug:
+                                    f.files_upload (token, channel_dev, filename, flyer_url)
+                                os.remove (filename)
+                            else:
+                                message = 'チラシファイルのダウンロードに失敗しました。URL: ' + flyer_url
+                                f.iw (webhook_dev, message)
                         else:
-                            message = 'チラシファイルのダウンロードに失敗しました。URL: ' + flyer_url
-                            f.iw (webhook_dev, message)
+                            if debug:
+                                text = flyer_url + ' has already posted in previous'
+                                f.iw (webhook_dev, text)
                     if store not in pf['stores']:
                         pf['stores'].append(store)
                     pf['detail'][store] = york_flyers
@@ -60,17 +66,23 @@ def main ():
 
             elif store == 'meatmeet': # ミートミート
                 mm_flyers = meatmeet.get_flyers()
-                if store not in pf['detail'] or not (set(mm_flyers['flyers']) == set(pf['detail'][store]['flyers'])):
+                if store not in pf['stores'] or not (set(mm_flyers['flyers']) == set(pf['detail'][store]['flyers'])):
                     updated = True
                     for flyer_url in mm_flyers['flyers']:
-                        filename = f.dl (flyer_url)
-                        if not filename == 'Fail':
-                            f.files_upload (token, channel_dev, filename, flyer_url)
-                            f.files_upload (token, channel, filename, flyer_url)
-                            os.remove (filename)
+                        if not flyer_url in pf['detail'][store]['flyers']:
+                            filename = f.dl (flyer_url)
+                            if not filename == 'Fail':
+                                f.files_upload (token, channel, filename, flyer_url)
+                                if debug:
+                                    f.files_upload (token, channel_dev, filename, flyer_url)
+                                os.remove (filename)
+                            else:
+                                message = 'チラシファイルのダウンロードに失敗しました。URL: ' + flyer_url
+                                f.iw (webhook_dev, message)
                         else:
-                            message = 'チラシファイルのダウンロードに失敗しました。URL: ' + flyer_url
-                            f.iw (webhook_dev, message)
+                            if debug:
+                                text = flyer_url + ' has already posted in previous'
+                                f.iw (webhook_dev, text)
                     if store not in pf['stores']:
                         pf['stores'].append(store)
                     pf['detail'][store] = mm_flyers
@@ -81,20 +93,25 @@ def main ():
                         print (text)
                         f.iw (webhook_dev, text)
 
-
             elif store == "gyoumusuper": # 業務スーパー
                 gs_flyers = gyoumusuper.get_flyers()
-                if store not in pf['detail'] or not (set(gs_flyers['flyers']) == set(pf['detail'][store]['flyers'])):
+                if store not in pf['stores'] or not (set(gs_flyers['flyers']) == set(pf['detail'][store]['flyers'])):
                     updated = True
                     for flyer_url in gs_flyers['flyers']:
-                        filename = f.dl (flyer_url)
-                        if not filename == 'Fail':
-                            f.files_upload (token, channel_dev, filename, flyer_url)
-                            f.files_upload (token, channel, filename, flyer_url)
-                            os.remove (filename)
+                        if not flyer_url in pf['detail'][store]['flyers']:
+                            filename = f.dl (flyer_url)
+                            if not filename == 'Fail':
+                                f.files_upload (token, channel, filename, flyer_url)
+                                if debug:
+                                    f.files_upload (token, channel_dev, filename, flyer_url)
+                                os.remove (filename)
+                            else:
+                                message = 'チラシファイルのダウンロードに失敗しました。URL: ' + flyer_url
+                                f.iw (webhook_dev, message)
                         else:
-                            message = 'チラシファイルのダウンロードに失敗しました。URL: ' + flyer_url
-                            f.iw (webhook_dev, message)
+                            if debug:
+                                text = flyer_url + ' has already posted in previous'
+                                f.iw (webhook_dev, text)
                     if store not in pf['stores']:
                         pf['stores'].append(store)
                     pf['detail'][store] = gs_flyers
@@ -107,14 +124,20 @@ def main ():
 
             elif store == "welcia": # ウエルシア
                 wl_flyers_page_list = welcia.get_flyer_page_list ()
-                if store not in pf['detail'] or not (set(wl_flyers_page_list) == set(pf['detail'][store]['flyers'])):
+                if store not in pf['stores'] or not (set(wl_flyers_page_list) == set(pf['detail'][store]['flyers'])):
                     updated = True
                     for p in wl_flyers_page_list:
-                        pics = welcia.get_flyers_pics (p)
-                        for pic in pics:
-                            f.files_upload (token, channel_dev, pic, p)
-                            f.files_upload (token, channel, pic, p)
-                            os.remove (pic)
+                        if not p in pf['detail'][store]['flyers']:
+                            pics = welcia.get_flyers_pics (p)
+                            for pic in pics:
+                                f.files_upload (token, channel, pic, p)
+                                if debug:
+                                    f.files_upload (token, channel_dev, pic, p)
+                                os.remove (pic)
+                        else:
+                            if debug:
+                                text = p + ' has already posted in previous'
+                                f.iw (webhook_dev, text)
                     if store not in pf['stores']:
                         pf['stores'].append(store)
                     pf['detail'][store] = wl_flyers_page_list
@@ -126,11 +149,17 @@ def main ():
 
             elif store == "supervalue": # スーパーバリュー
                 sv_flyers_page_list = supervalue.get_flyer_page_url ()
-                if store not in pf['detail'] or not (set(sv_flyers_page_list) == set(pf['detail'][store]['flyers'])):
+                if store not in pf['stores'] or not (set(sv_flyers_page_list) == set(pf['detail'][store]['flyers'])):
                     updated = True
                     for flyer_url in sv_flyers_page_list:
-                            f.iw (webhook_dev, flyer_url)
+                        if not flyer_url in pf['detail'][store]['flyers']:
                             f.iw (webhook, flyer_url)
+                            if debug:
+                                f.iw (webhook_dev, flyer_url)
+                        else:
+                            if debug:
+                                text = p + ' has already posted in previous'
+                                f.iw (webhook_dev, text)
                     if store not in pf['stores']:
                         pf['stores'].append(store)
                     sv_flyers = {"flyers": sv_flyers_page_list}
