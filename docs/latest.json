@@ -1,5 +1,5 @@
 {
-    "updated_at": "20210328_190002",
+    "updated_at": "20210329_212406",
     "stores": [
         "yorkmart",
         "meetmeat",
@@ -45,9 +45,8 @@
             ]
         },
         "supervalue": {
-            "updated_at": "20210324_211653",
             "flyers": [
-                "https://www.supervalue.jp/leaflet/uploads/20210321093133XOcb/"
+                "https://www.supervalue.jp/leaflet/uploads/20210325075348BhKu/"
             ]
         }
     }
