@@ -123,7 +123,8 @@ def main ():
                         f.iw (webhook_dev, text)
 
             elif store == "welcia": # ウエルシア
-                wl_flyers_page_list = welcia.get_flyer_page_list ()
+                wl_flyers = welcia.get_flyer_page_list ()
+                wl_flyers_page_list = wl_flyers['flyers']
                 if store not in pf['stores'] or not (set(wl_flyers_page_list) == set(pf['detail'][store]['flyers'])):
                     updated = True
                     for p in wl_flyers_page_list:

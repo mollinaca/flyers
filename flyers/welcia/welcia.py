@@ -49,7 +49,8 @@ def get_flyer_page_list () -> list:
             if not cf_url in flyer_page_list:
                 flyer_page_list.append (cf_url)
 
-    return flyer_page_list
+    ret = {'updated_at':dt_now, 'flyers':flyer_page_list}
+    return ret
 
 def get_flyers_pics (page_url:str) -> list:
     """
