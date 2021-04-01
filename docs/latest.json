@@ -38,14 +38,18 @@
                 "https://image.tokubai.co.jp/images/bargain_office_leaflets/o=true/3929087.jpg"
             ]
         },
-        "welcia": [
-            "http://s-cmn.shufoo.net/chirashi/298280/38388623857683/?",
-            "http://s-cmn.shufoo.net/chirashi/298280/38433623955068/?"
-        ],
+        "welcia": {
+            "updated_at": "20210401_100015",
+            "flyers": [
+                "http://s-cmn.shufoo.net/chirashi/298280/38388623857683/?",
+                "http://s-cmn.shufoo.net/chirashi/298280/38433623955068/?"
+                ]
+        },
         "supervalue": {
+            "updated_at": "20210401_100015",
             "flyers": [
                 "https://www.supervalue.jp/leaflet/uploads/202103280937391SjL/"
-            ]
+                ]
         }
     }
 }
