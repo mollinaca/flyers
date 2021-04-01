@@ -141,7 +141,7 @@ def main ():
                                 f.iw (webhook_dev, text)
                     if store not in pf['stores']:
                         pf['stores'].append(store)
-                    pf['detail'][store] = wl_flyers_page_list
+                    pf['detail'][store] = wl_flyers
                 else:
                     if debug:
                         text = '[debug] ' + store + ' has no changed.'
@@ -163,7 +163,7 @@ def main ():
                                 f.iw (webhook_dev, text)
                     if store not in pf['stores']:
                         pf['stores'].append(store)
-                    sv_flyers = {"flyers": sv_flyers_page_list}
+                    sv_flyers = {"updated_at":dt_now, "flyers": sv_flyers_page_list}
                     pf['detail'][store] = sv_flyers
                 else:
                     if debug:
