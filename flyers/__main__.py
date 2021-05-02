@@ -8,7 +8,7 @@ import git
 from . import f
 from .yorkmart import yorkmart
 from .meatmeet import meatmeet
-from .gyoumusuper import gyoumusuper
+from .gyomusuper import gyomusuper
 from .welcia import welcia
 from .supervalue import supervalue
 
@@ -25,7 +25,7 @@ def main ():
     channel = config['flyers']['channel']
     channel_dev = config['flyers']['channel_dev']
     updated = False
-    stores = ['yorkmart', 'meatmeet', 'gyoumusuper', 'welcia', 'supervalue']
+    stores = ['yorkmart', 'meatmeet', 'gyomusuper', 'welcia', 'supervalue']
     pf = f.prev_flyer ()
 
     try:
@@ -93,8 +93,8 @@ def main ():
                         print (text)
                         f.iw (webhook_dev, text)
 
-            elif store == "gyoumusuper": # 業務スーパー
-                gs_flyers = gyoumusuper.get_flyers()
+            elif store == "gyomusuper": # 業務スーパー
+                gs_flyers = gyomusuper.get_flyers()
                 if store not in pf['stores'] or not (set(gs_flyers['flyers']) == set(pf['detail'][store]['flyers'])):
                     updated = True
                     for flyer_url in gs_flyers['flyers']:
