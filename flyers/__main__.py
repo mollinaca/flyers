@@ -125,31 +125,30 @@ def main ():
                         f.iw (webhook_dev, text)
 
             elif store == "welcia": # ウエルシア
-                pass # いったんパス
-#               wl_flyers = welcia.get_flyer_page_list ()
-#               wl_flyers_page_list = wl_flyers['flyers']
-#               if store not in pf['stores'] or not (set(wl_flyers_page_list) == set(pf['detail'][store]['flyers'])):
-#                   updated = True
-#                   for p in wl_flyers_page_list:
-#                       if not p in pf['detail'][store]['flyers']:
-#                           pics = welcia.get_flyers_pics (p)
-#                           for pic in pics:
-#                               f.files_upload (token, channel, pic, p)
-#                               if debug:
-#                                   f.files_upload (token, channel_dev, pic, p)
-#                               os.remove (pic)
-#                       else:
-#                           if debug:
-#                               text = p + ' has already posted in previous'
-#                               f.iw (webhook_dev, text)
-#                   if store not in pf['stores']:
-#                       pf['stores'].append(store)
-#                   pf['detail'][store] = wl_flyers
-#               else:
-#                   if debug:
-#                       text = '[debug] ' + store + ' has no changed.'
-#                       print (text)
-#                       f.iw (webhook_dev, text)
+                wl_flyers = welcia.get_flyer_page_list ()
+                wl_flyers_page_list = wl_flyers['flyers']
+                if store not in pf['stores'] or not (set(wl_flyers_page_list) == set(pf['detail'][store]['flyers'])):
+                    updated = True
+                    for p in wl_flyers_page_list:
+                        if not p in pf['detail'][store]['flyers']:
+                            pics = welcia.get_flyers_pics (p)
+                            for pic in pics:
+                                f.files_upload (token, channel, pic, p)
+                                if debug:
+                                    f.files_upload (token, channel_dev, pic, p)
+                                os.remove (pic)
+                        else:
+                            if debug:
+                                text = p + ' has already posted in previous'
+                                f.iw (webhook_dev, text)
+                    if store not in pf['stores']:
+                        pf['stores'].append(store)
+                    pf['detail'][store] = wl_flyers
+                else:
+                    if debug:
+                        text = '[debug] ' + store + ' has no changed.'
+                        print (text)
+                        f.iw (webhook_dev, text)
 
             elif store == "supervalue": # スーパーバリュー
                 sv_flyers_page_list = supervalue.get_flyer_page_url ()
