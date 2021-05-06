@@ -1,5 +1,5 @@
 {
-    "updated_at": "20210430_190001",
+    "updated_at": "20210506_100002",
     "stores": [
         "yorkmart",
         "meetmeat",
@@ -10,27 +10,19 @@
     ],
     "detail": {
         "yorkmart": {
-            "updated_at": "20210505_190002",
+            "updated_at": "20210506_100003",
             "flyers": [
-                "https://www.york-inc.com/ul-files/0501_201_A-1-scaled.jpg",
-                "https://www.york-inc.com/ul-files/0501_201_B-1-scaled.jpg",
-                "https://www.york-inc.com/ul-files/0428_201_A-1-scaled.jpg",
-                "https://www.york-inc.com/ul-files/0428_201_B-1-scaled.jpg",
+                "https://www.york-inc.com/ul-files/0505_201_A-1-scaled.jpg",
+                "https://www.york-inc.com/ul-files/0505_201_B-1-scaled.jpg",
                 "https://www.york-inc.com/ul-files/a7c34be571c8d1a1b81d9ff5eaef98fc-scaled.jpg",
                 "https://www.york-inc.com/ul-files/9d71b96499b601d52ddad3b56bf7b722-scaled.jpg",
                 "https://www.york-inc.com/ul-files/05nattoku_201_A.jpg",
-                "https://www.york-inc.com/ul-files/05nattoku_201_B.jpg",
-                "https://www.york-inc.com/ul-files/202104_201_A.jpg",
-                "https://www.york-inc.com/ul-files/202104_201_B.jpg",
-                "https://www.york-inc.com/ul-files/0505_201_A-1-scaled.jpg",
-                "https://www.york-inc.com/ul-files/0505_201_B-1-scaled.jpg"
+                "https://www.york-inc.com/ul-files/05nattoku_201_B.jpg"
             ]
         },
         "meatmeet": {
-            "updated_at": "20210430_190036",
+            "updated_at": "20210506_100007",
             "flyers": [
-                "https://image.tokubai.co.jp/images/bargain_office_leaflets/o=true/3974416.jpg",
-                "https://image.tokubai.co.jp/images/bargain_office_leaflets/o=true/3974421.jpg",
                 "https://image.tokubai.co.jp/images/bargain_office_leaflets/o=true/3996463.jpg",
                 "https://image.tokubai.co.jp/images/bargain_office_leaflets/o=true/3996465.jpg"
             ]
@@ -49,9 +41,9 @@
             ]
         },
         "supervalue": {
-            "updated_at": "20210429_100002",
+            "updated_at": "20210506_100002",
             "flyers": [
-                "https://www.supervalue.jp/leaflet/uploads/20210425092231qjCD/"
+                "https://www.supervalue.jp/leaflet/uploads/20210429095143gvqR/"
             ]
         }
     }
