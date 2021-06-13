@@ -1,3 +1,4 @@
+Pipfile.lock
 *.log
 test.*
 flyers/.settings.ini
