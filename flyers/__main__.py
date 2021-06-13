@@ -25,8 +25,8 @@ def main ():
     channel = config['flyers']['channel']
     channel_dev = config['flyers']['channel_dev']
     updated = False
-#    stores = ['yorkmart', 'meatmeet', 'gyomusuper', 'welcia', 'supervalue']
-    stores = ['yorkmart', 'meatmeet', 'supervalue']
+#   stores = ['yorkmart', 'meatmeet', 'gyomusuper', 'welcia', 'supervalue']
+    stores = ['yorkmart', 'meatmeet', 'gyomusuper', 'supervalue']
 
     pf = f.prev_flyer ()
 
@@ -97,32 +97,41 @@ def main ():
 
             elif store == "gyomusuper": # 業務スーパー
                 gs_flyers = gyomusuper.get_flyers()
-                if store not in pf['stores'] or not (set(gs_flyers['flyers']) == set(pf['detail'][store]['flyers'])):
-                    updated = True
-                    for flyer_url in gs_flyers['flyers']:
-                        if not flyer_url in pf['detail'][store]['flyers']:
-                            filename = f.dl (flyer_url)
-                            if not filename == 'Fail':
-                                f.files_upload (token, channel, filename, flyer_url)
-                                if debug:
-                                    f.files_upload (token, channel_dev, filename, flyer_url)
-                                os.remove (filename)
-                            else:
-                                message = 'チラシファイルのダウンロードに失敗しました。URL: ' + flyer_url
-                                f.iw (webhook_dev, message)
-                        else:
-                            if debug:
-                                text = flyer_url + ' has already posted in previous'
-                                f.iw (webhook_dev, text)
-                    if store not in pf['stores']:
-                        pf['stores'].append(store)
-                    pf['detail'][store] = gs_flyers
-
-                else:
+                if gs_flyers['flyers'] == []:
+                    # チラシが1枚もなかった
                     if debug:
-                        text = '[debug] ' + store + ' has no changed.'
+                        text = '[debug] ' + store + ' has no flyers.'
                         print (text)
                         f.iw (webhook_dev, text)
+                    continue # 業務スーパーの処理終わり
+                else:
+                    # チラシがあった
+                    if store not in pf['stores'] or not (set(gs_flyers['flyers']) == set(pf['detail'][store]['flyers'])):
+                        updated = True
+                        for flyer_url in gs_flyers['flyers']:
+                            if not flyer_url in pf['detail'][store]['flyers']:
+                                filename = f.dl (flyer_url)
+                                if not filename == 'Fail':
+                                    f.files_upload (token, channel, filename, flyer_url)
+                                    if debug:
+                                        f.files_upload (token, channel_dev, filename, flyer_url)
+                                    os.remove (filename)
+                                else:
+                                    message = 'チラシファイルのダウンロードに失敗しました。URL: ' + flyer_url
+                                    f.iw (webhook_dev, message)
+                            else:
+                                if debug:
+                                    text = flyer_url + ' has already posted in previous'
+                                    f.iw (webhook_dev, text)
+                        if store not in pf['stores']:
+                            pf['stores'].append(store)
+                        pf['detail'][store] = gs_flyers
+
+                    else:
+                        if debug:
+                            text = '[debug] ' + store + ' has no changed.'
+                            print (text)
+                            f.iw (webhook_dev, text)
 
             elif store == "welcia": # ウエルシア
                 wl_flyers = welcia.get_flyer_page_list ()
@@ -184,7 +193,7 @@ def main ():
             OUTPUT_FILE = pathlib.Path(str(OUTPUT_DIR) + '/' + OUTPUT_FILE_NAME)
             with open(OUTPUT_FILE, mode='w') as fl:
                 fl.write(json.dumps(pf, indent=4))
-
+            
             # git push
             git_repo= git.Repo(SCRIPT_DIR)
             git_repo.index.add(str(OUTPUT_FILE))
