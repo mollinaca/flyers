@@ -1,5 +1,5 @@
 {
-    "updated_at": "20210613_220133",
+    "updated_at": "20210613_221737",
     "stores": [
         "yorkmart",
         "meetmeat",
@@ -33,16 +33,16 @@
             ]
         },
         "welcia": {
-            "updated_at": "20210613_220134",
+            "updated_at": "20210613_221748",
             "flyers": [
                 "http://s-cmn.shufoo.net/chirashi/298280/31926724493417/?",
                 "http://s-cmn.shufoo.net/chirashi/298280/45788324529277/?"
             ]
         },
         "supervalue": {
-            "updated_at": "20210610_100002",
+            "updated_at": "20210613_221737",
             "flyers": [
-                "https://www.supervalue.jp/leaflet/uploads/202106060845244gFG/"
+                "https://www.supervalue.jp/leaflet/uploads/20210610082008GURV/"
             ]
         }
     }
