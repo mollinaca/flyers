@@ -25,9 +25,7 @@ def main ():
     channel = config['flyers']['channel']
     channel_dev = config['flyers']['channel_dev']
     updated = False
-#   stores = ['yorkmart', 'meatmeet', 'gyomusuper', 'welcia', 'supervalue']
-    stores = ['yorkmart', 'meatmeet', 'gyomusuper', 'supervalue']
-
+    stores = ['yorkmart', 'meatmeet', 'gyomusuper', 'welcia', 'supervalue']
     pf = f.prev_flyer ()
 
     try:
