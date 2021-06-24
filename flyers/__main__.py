@@ -25,7 +25,9 @@ def main ():
     channel = config['flyers']['channel']
     channel_dev = config['flyers']['channel_dev']
     updated = False
-    stores = ['yorkmart', 'meatmeet', 'gyomusuper', 'welcia', 'supervalue']
+#   stores = ['yorkmart', 'meatmeet', 'gyomusuper', 'welcia', 'supervalue']
+    stores = ['yorkmart', 'meatmeet', 'gyomusuper', 'supervalue']  # welcia からの取得を一時停止
+
     pf = f.prev_flyer ()
 
     try:
