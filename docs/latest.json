@@ -1,5 +1,5 @@
 {
-    "updated_at": "20210827_190003",
+    "updated_at": "20210828_100003",
     "stores": [
         "yorkmart",
         "meetmeat",
@@ -10,12 +10,10 @@
     ],
     "detail": {
         "yorkmart": {
-            "updated_at": "20210827_190004",
+            "updated_at": "20210828_100004",
             "flyers": [
                 "https://www.york-inc.com/ul-files/0828_201_A-1-scaled.jpg",
                 "https://www.york-inc.com/ul-files/0828_201_B-1-scaled.jpg",
-                "https://www.york-inc.com/ul-files/0825_201_A-1-scaled.jpg",
-                "https://www.york-inc.com/ul-files/0825_201_B-1-scaled.jpg",
                 "https://www.york-inc.com/ul-files/0801_201_A-2-scaled.jpg",
                 "https://www.york-inc.com/ul-files/0801_201_B-2-scaled.jpg",
                 "https://www.york-inc.com/ul-files/2108nattoku_201_A.jpg",
@@ -23,10 +21,8 @@
             ]
         },
         "meatmeet": {
-            "updated_at": "20210827_190029",
+            "updated_at": "20210828_100006",
             "flyers": [
-                "https://image.tokubai.co.jp/images/bargain_office_leaflets/o=true/4247027.jpg",
-                "https://image.tokubai.co.jp/images/bargain_office_leaflets/o=true/4247030.jpg",
                 "https://image.tokubai.co.jp/images/bargain_office_leaflets/o=true/4267884.jpg",
                 "https://image.tokubai.co.jp/images/bargain_office_leaflets/o=true/4267905.jpg"
             ]
