@@ -1,5 +1,5 @@
 {
-    "updated_at": "20210920_100004",
+    "updated_at": "20210921_190004",
     "stores": [
         "yorkmart",
         "meetmeat",
@@ -10,8 +10,10 @@
     ],
     "detail": {
         "yorkmart": {
-            "updated_at": "20210918_100003",
+            "updated_at": "20210921_190004",
             "flyers": [
+                "https://www.york-inc.com/ul-files/0922_201_A-1-scaled.jpg",
+                "https://www.york-inc.com/ul-files/0922_201_B-1-scaled.jpg",
                 "https://www.york-inc.com/ul-files/0918_201_A-1-scaled.jpg",
                 "https://www.york-inc.com/ul-files/0918_201_B-1-scaled.jpg",
                 "https://www.york-inc.com/ul-files/0901nattoku_201_A.jpg",
