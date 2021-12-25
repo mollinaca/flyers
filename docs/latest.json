@@ -1,5 +1,5 @@
 {
-    "updated_at": "20211224_190001",
+    "updated_at": "20211225_100001",
     "stores": [
         "yorkmart",
         "meetmeat",
@@ -10,14 +10,12 @@
     ],
     "detail": {
         "yorkmart": {
-            "updated_at": "20211224_190002",
+            "updated_at": "20211225_100002",
             "flyers": [
                 "https://www.york-inc.com/ul-files/1225_201_A-2-scaled.jpg",
                 "https://www.york-inc.com/ul-files/1225_201_B-2-scaled.jpg",
                 "https://www.york-inc.com/ul-files/1224_201_A-scaled.jpg",
                 "https://www.york-inc.com/ul-files/1224_201_B-scaled.jpg",
-                "https://www.york-inc.com/ul-files/1222_201_A-1-scaled.jpg",
-                "https://www.york-inc.com/ul-files/1222_201_B-1-scaled.jpg",
                 "https://www.york-inc.com/ul-files/1201nattoku_201_A.jpg",
                 "https://www.york-inc.com/ul-files/1201nattoku_201_B.jpg"
             ]
@@ -45,9 +43,9 @@
             ]
         },
         "supervalue": {
-            "updated_at": "20211222_100002",
+            "updated_at": "20211225_100001",
             "flyers": [
-                "https://www.supervalue.jp/leaflet/uploads/20211219093842W1XO/"
+                "https://www.supervalue.jp/leaflet/uploads/20211223110011vVzd/"
             ]
         }
     }
